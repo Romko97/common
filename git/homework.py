@@ -15,7 +15,8 @@ def is_two_object_has_same_value(first: Any, second: Any) -> bool:
     If @first and @second has same value should return True
     In another case should return False
     """
-    pass
+    return first == second
+
 
 
 def is_two_objects_has_same_type(first: Any, second: Any) -> bool:
@@ -23,7 +24,7 @@ def is_two_objects_has_same_type(first: Any, second: Any) -> bool:
     If @first and @second has same type should return True
     In another case should return False
     """
-    pass
+    return type(first) == type(second)
 
 
 def is_two_objects_is_the_same_objects(first: Any, second: Any) -> bool:
@@ -31,7 +32,7 @@ def is_two_objects_is_the_same_objects(first: Any, second: Any) -> bool:
     If @first and @second has same type should return True
     In another case should return False
     """
-    pass
+    return first is second
 
 
 def multiple_ints(first_value: int, second_value: int) -> int:
@@ -48,7 +49,10 @@ def multiple_ints(first_value: int, second_value: int) -> int:
     Returns:
         Product of elements
     """
-    pass
+    if not isinstance(first_value, int) or not isinstance(second_value, int):
+        raise ValueError("Not valid input data")
+
+    return first_value * second_value
 
 
 def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
@@ -67,18 +71,21 @@ def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
 
     Examples:
         multiple_ints_with_conversion(6, 6)
-        >>> 36
+        #>>> 36
         multiple_ints_with_conversion(2, 2.0)
-        >>> 4
+        #>>> 4
         multiple_ints_with_conversion("12", 1)
-        >>> 12
+        #>>> 12
         try:
             multiple_ints_with_conversion("Hello", 2)
         except ValueError:
             print("Not valid input data")
-        >>> "Not valid input data"
+       # >>> "Not valid input data"
     """
-    pass
+    try:
+        return int(first_value) * int(second_value)
+    except Exception:
+        raise ValueError("Not valid input data")
 
 
 def is_word_in_text(word: str, text: str) -> bool:
@@ -92,19 +99,26 @@ def is_word_in_text(word: str, text: str) -> bool:
 
     Examples:
         is_word_in_text("Hello", "Hello word")
-        >>> True
+        #>>> True
         is_word_in_text("Glad", "Nice to meet you ")
-        >>> False
+        #>>> False
 
     """
-    pass
+    return word in text
 
 
 def some_loop_exercise() -> list:
     """
-    Use loop to create list that contain int values from 0 to 12 except 6 and 7
+    Use loop to create list that contain int values
+    from 0 to 12 except 6 and 7
     """
-    pass
+
+    list_1 = []
+    for num in range(13):
+        list_1.append(num)
+    list_1.remove(6)
+    list_1.remove(7)
+    return list_1
 
 
 def remove_from_list_all_negative_numbers(data: List[int]) -> list:
@@ -114,9 +128,10 @@ def remove_from_list_all_negative_numbers(data: List[int]) -> list:
     Also you could create new list with only positive numbers.
     Examples:
         remove_from_list_all_negative_numbers([1, 5, -7, 8, -1])
-        >>> [1, 5, 8]
+       # >>> [1, 5, 8]
+
     """
-    pass
+    return [i for i in data if i >= 0]
 
 
 def alphabet() -> dict:
@@ -125,9 +140,12 @@ def alphabet() -> dict:
     Notes You could see an implementaion of this one in test, but create another one
     Examples:
         alphabet()
-        >>> {"a": 1, "b": 2 ...}
+       # >>> {"a": 1, "b": 2 ...}
     """
-    pass
+    import string
+
+    return {index + 1: letter for index, letter in enumerate(string.ascii_lowercase)}
+
 
 
 def simple_sort(data: List[int]) -> List[list]:
@@ -135,8 +153,11 @@ def simple_sort(data: List[int]) -> List[list]:
     Sort list of ints without using built-in methods.
     Examples:
         simple_sort([2, 9, 6, 7, 3, 2, 1])
-        >>> [1, 2, 2, 3, 6, 7, 9]
+        #>>> [1, 2, 2, 3, 6, 7, 9]
     Returns:
-
     """
-    pass
+    for index in range(0, len(data)):
+        for index2 in range(1, len(data)-index):
+            if data[index2-1] > data[index2]:
+                (data[index2-1], data[index2]) = (data[index2], data[index2-1])
+    return data
