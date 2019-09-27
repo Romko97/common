@@ -18,7 +18,6 @@ def is_two_object_has_same_value(first: Any, second: Any) -> bool:
     return first == second
 
 
-
 def is_two_objects_has_same_type(first: Any, second: Any) -> bool:
     """
     If @first and @second has same type should return True
@@ -84,7 +83,7 @@ def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
     """
     try:
         return int(first_value) * int(second_value)
-    except Exception:
+    except (TypeError, ValueError):
         raise ValueError("Not valid input data")
 
 
@@ -113,12 +112,7 @@ def some_loop_exercise() -> list:
     from 0 to 12 except 6 and 7
     """
 
-    list_1 = []
-    for num in range(13):
-        list_1.append(num)
-    list_1.remove(6)
-    list_1.remove(7)
-    return list_1
+    return [for i in range(0, 13) if i not in [6, 7]]
 
 
 def remove_from_list_all_negative_numbers(data: List[int]) -> list:
@@ -145,7 +139,6 @@ def alphabet() -> dict:
     import string
 
     return {index + 1: letter for index, letter in enumerate(string.ascii_lowercase)}
-
 
 
 def simple_sort(data: List[int]) -> List[list]:
