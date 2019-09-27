@@ -48,10 +48,10 @@ def multiple_ints(first_value: int, second_value: int) -> int:
     Returns:
         Product of elements
     """
-    if not isinstance(first_value, int) or not isinstance(second_value, int):
-        raise ValueError("Not valid input data")
-
-    return first_value * second_value
+   try:
+        return int(first_value)*int(second_value)
+    except (TypeError, ValueError):
+        raise ValueError
 
 
 def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
